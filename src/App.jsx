@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import './App.css';
 import TodoInput from './component/TodoInput';
@@ -9,11 +8,13 @@ function App() {
   const {
     inputText,
     setInputText,
-    listTodo,
     addTodo,
-    updateTodo,
-    deleteListItem,
+     updateTodo,
+     deleteListItem,
     toggleCheckbox,
+     searchTerm,
+     setSearchTerm,
+     filteredTodos
   } = useCustom();
 
   return (
@@ -25,20 +26,27 @@ function App() {
           inputText={inputText}
           setInputText={setInputText}
           addTodo={addTodo}
+           searchTerm={searchTerm}
+           setSearchTerm={setSearchTerm}
+        />
+        <input
+          type="text"
+          className="input-box-todo"
+          placeholder="Search todos..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-        <ul>
-          {listTodo.map((item, index) => (
-            <TodoList
-              key={index}
-              item={item}
-              deleteItem={deleteListItem}
-              toggleCheckbox={toggleCheckbox}
-              index={index}
-              updateItem={updateTodo}
-            />
-          ))}
-        </ul>
+        {filteredTodos.map((item, i) => (
+          <TodoList
+            key={i}
+            index={i}
+            item={item}
+            deleteItem={deleteListItem}
+            updateItem={updateTodo}
+            toggleCheckbox={toggleCheckbox}
+          />
+        ))}
       </div>
     </div>
   );

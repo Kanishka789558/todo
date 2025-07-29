@@ -1,4 +1,3 @@
-// src/component/TodoList.jsx
 import React, { useState } from 'react';
 
 export default function TodoList({ item, index, deleteItem, updateItem, toggleCheckbox }) {

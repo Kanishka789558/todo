@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function useCustom() {
   const [listTodo, setListTodo] = useState([]);
   const [inputText, setInputText] = useState('');
-  
+  const [searchTerm, setSearchTerm] = useState('');
 
   const addTodo = (text) => {
     if (text.trim() === '') return;
@@ -22,25 +22,28 @@ export default function useCustom() {
     updatedTodos[index].text = newText;
     setListTodo(updatedTodos);
   };
-   const toggleCheckbox = (index) => {
+
+  const toggleCheckbox = (index) => {
     const updatedTodos = [...listTodo];
     updatedTodos[index].completed = !updatedTodos[index].completed;
     setListTodo(updatedTodos);
-   };
+  };
 
-  
-
-  
+  const filteredTodos = listTodo.filter((item) =>
+    item.text.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
    return {
      listTodo,
      setListTodo,
      inputText,
      setInputText,
-     toggleCheckbox,
+     searchTerm,
+     setSearchTerm,
        addTodo,
     deleteListItem,
      updateTodo,
-     
+     toggleCheckbox,
+    filteredTodos
   };
  }
