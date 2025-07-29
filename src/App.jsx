@@ -11,7 +11,9 @@ function App() {
     setInputText,
     listTodo,
     addTodo,
-    updateTodo
+    updateTodo,
+    deleteListItem,
+    toggleCheckbox,
   } = useCustom();
 
   return (
@@ -30,6 +32,8 @@ function App() {
             <TodoList
               key={index}
               item={item}
+              deleteItem={deleteListItem}
+              toggleCheckbox={toggleCheckbox}
               index={index}
               updateItem={updateTodo}
             />
