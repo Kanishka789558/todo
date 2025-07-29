@@ -1,12 +1,7 @@
 // src/component/TodoInput.jsx
-
 import React from 'react';
 
-export default function TodoInput({
-  inputText,
-  setInputText,
-  addTodo
-}) {
+export default function TodoInput({ inputText, setInputText, addTodo }) {
   const handleEnterPress = (e) => {
     if (e.keyCode === 13 && inputText.trim() !== '') {
       addTodo(inputText);
@@ -23,14 +18,7 @@ export default function TodoInput({
         onChange={(e) => setInputText(e.target.value)}
         onKeyDown={handleEnterPress}
       />
-      <button
-        className='add-btn'
-        onClick={() => {
-          addTodo(inputText);
-        }}
-      >
-        +
-      </button>
+      <button className='add-btn' onClick={() => addTodo(inputText)}>+</button>
     </div>
   );
 }

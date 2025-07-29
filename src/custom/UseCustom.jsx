@@ -1,28 +1,28 @@
 // src/custom/UseCustom.jsx
-
 import { useState } from 'react';
 
 export default function useCustom() {
   const [listTodo, setListTodo] = useState([]);
   const [inputText, setInputText] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
 
   const addTodo = (text) => {
     if (text.trim() === '') return;
-    setListTodo([...listTodo, { text, completed: false }]);
+    setListTodo([...listTodo, { text }]);
     setInputText('');
   };
 
-  const filteredTodos = listTodo.filter((item) =>
-    item.text.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const updateTodo = (index, newText) => {
+    const updatedTodos = [...listTodo];
+    updatedTodos[index].text = newText;
+    setListTodo(updatedTodos);
+  };
 
   return {
+    listTodo,
+    setListTodo,
     inputText,
     setInputText,
-    searchTerm,
-    setSearchTerm,
     addTodo,
-    filteredTodos
+    updateTodo,
   };
 }
